@@ -1,0 +1,58 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Project ID: <%=ID%></h1>
+    <h2 class="sub-header"><%=ProjName%></h2>
+    <h3>Region: <b><%=Region%></b></h3>
+    <h3>Current Phase: <%=Phase%></h3>
+    <ul class="progress-tracker progress-tracker--word progress-tracker--word-center">
+        <li class = "progress-step" id = "Pending">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Pending </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Legal">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Legal </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Build">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Build </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Shipped">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Shipped </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Return Request">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Return Request </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Returned">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Returned </h4>
+            </span>
+        </li>
+    </ul>
+    <h3>Company: <b><%=AccName%></b></h3>
+    <h3>Configuration: <i><%=Config%></i></h3>
+    
+    <script>
+        var li = ["Pending","Legal","Build","Shipped","Return Request","Returned"];
+        var curphase = "<%=Phase%>";
+        for(i = 0; i < li.indexOf(curphase); i++)
+        {
+            document.getElementById(li[i]).classList.add("is-complete");
+        }
+        if(li.indexOf(curphase) !== -1)
+            document.getElementById(li[li.indexOf(curphase)]).classList.add("is-active");
+            
+    </script>
+</div>

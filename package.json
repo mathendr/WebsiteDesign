@@ -4,7 +4,7 @@
   "description": "Testing Node.js for use later",
   "main": "app/app.js",
   "scripts": {
-    "start": "nodemon -e css,ejs,js,json --watch app"
+    "start": "nodemon -e css,ejs,js,accdb --watch app"
   },
   "author": "Matthew Hendrick",
   "dependencies": {
@@ -12,6 +12,7 @@
     "express": "^4.15.3",
     "jquery": "^3.2.1",
     "progress-tracker": "^1.0.0",
+    "python-shell": "^0.4.0",
     "reload": "^1.1.5"
   }
 }

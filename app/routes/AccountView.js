@@ -7,7 +7,7 @@ router.get('/Account/:AccountName', function (req, res) {
     var itemlist = [];
     for(i = 0; i < item.length; i++)
         {
-            if(item[i].AccountName.includes(req.params.AccountName)){
+            if(item[i].AccountName === (req.params.AccountName)){
                 itemlist = itemlist.concat(item[i]);
             }
         }

@@ -8,7 +8,7 @@ router.get('/Program/:ProjName', function (req, res) {
     var itemlist = [];
     for(i = 0; i < item.length; i++)
         {
-            if(item[i].ProgramName.includes(req.params.ProjName)){
+            if(item[i].ProgramName === (req.params.ProjName)){
                 itemlist = itemlist.concat(item[i]);
             }
         }

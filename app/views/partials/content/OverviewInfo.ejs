@@ -3,7 +3,7 @@
         <h1 class="page-header">Dashboard</h1>
 
     <canvas id="myChart" width="300" height=auto></canvas>
-     <script src="chart/jquery-2.1.4.min.js"></script>
+     <script src="chart/jquery-3.2.1.min.js"></script>
                     <script src="chart/Chart.js"></script>
 <script>
     
@@ -13,23 +13,33 @@ var dict1 = [];
 var dict2 = {};
 var arrayd = [];
 var arrayl = [];
-    
-//for (var i = 0; i < 5; i++){
-//    arrayd[i] = Math.floor((Math.random() * 500) + 1);
-//}
-//    
-for ( var i = 1; i < 2; i++  )
+var x = "<%= ID[i] %>";
+var y = "<%=ProjName[i] %>";
+var xs = x.split(",")
+var ys = y.split(",")
+
+//loads dict with keys and value
+for ( var i = 1; i < x.length; i++  )
 {
     dict1.push({
-        key: "<%= ID[i] %>",
-        value: "<%=ProjName[i]%>"
+        key: xs[i],
+        value: ys[i]
     });
 }    
-    
-// dict1=dict1.concat({
-//        "key": "<%= ID[14] %>",
-//        "value": "<%=ProjName[14]%>"
-//    });
+
+console.log(xs);
+console.log(ys);
+////gets list of labels
+//for (var i = 0l i < dict1.length; i++){
+//    if(arrayl.contains(dict1.value[i]) === false){
+//        arrayl.push(ys[i]);
+//    }
+//    if(arrayl.contains(dict1.value[i]) === true){
+//        
+//    }
+//    
+//}
+
                       
 console.log(dict1);
      

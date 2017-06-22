@@ -13,11 +13,11 @@ router.get('/', function (req, res) {
         AccName = AccName.concat(item.AccountName);
     });
     
-    PythonShell.run('app/data/DatabaseRetrieve.py',function(err,results){
-        if(err) 
-            throw err;
-        console.log(results);
-    });
+//    PythonShell.run('app/data/DatabaseRetrieve.py',function(err,results){
+//        if(err) 
+//            throw err;
+//        console.log(results);
+//    });
     res.render('index', {
         pageTitle: 'Home',
         pageID: "home",

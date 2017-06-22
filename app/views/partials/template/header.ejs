@@ -50,10 +50,28 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="/">Home</a></li>
-                <li><a href="/Overview">Server Names</a></li>
-                <li><a href="/worldmap">World Map</a></li>
+                <li id = "home"><a href="/">Home</a></li>
+                <li id = "servername"><a href="/Overview">Server Names</a></li>
+                <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
             </ul>
         </div>
     </div>
 </div>
+
+<script src="/chart/jquery-3.2.1.min.js"></script>
+            <script>
+                $(function() {
+                    if(<%=current%>.innerHTML.includes("Home"))
+                        {
+                            document.getElementById("home").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("Server Name"))
+                        {
+                            document.getElementById("servername").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("worldmap"))
+                        {
+                            document.getElementById("WorldMap").classList.add("active");
+                        }
+                });
+            </script>

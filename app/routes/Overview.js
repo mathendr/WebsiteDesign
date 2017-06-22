@@ -18,7 +18,7 @@ router.get('/Overview', function (req, res) {
         ProjName: ProjName,
         AccountName: AccName,
         Location: "",
-        current: "overview"
+        current: "servername"
     });
 });
 

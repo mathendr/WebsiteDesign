@@ -20,7 +20,8 @@ router.get('/worldmap', function (req, res) {
         ProjName: ProjName,
         AccountName: AccName,
         Location: "",
-        Region: Region
+        Region: Region,
+        current: "WorldMap"
     });
 });
 

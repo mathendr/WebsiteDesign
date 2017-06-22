@@ -53,10 +53,36 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li class="active"><a href="/">Home<span class="sr-only">(current)</span></a></li>
-                <li><a href="">Overview</a></li>
-                <li><a href="">Region</a></li>
+                <li id = "home"><a href="/">Home</a></li>
+                <li id = "overview"><a href="/Overview">Overview</a></li>
+                <li id = "region"><a href="">Region</a></li>
             </ul>
         </div>
     </div>
 </div>
+
+<script src="/chart/jquery-3.2.1.min.js"></script>
+            <script>
+                $(function () {
+                    $('.navbar-toggle').click(function () {
+                        $('.navbar-nav').toggleClass('slide-in');
+                        $('.side-body').toggleClass('body-slide-in');
+                        $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+                    });
+                });
+                $(function() {
+                    if(<%=current%>.innerHTML.includes("Home"))
+                        {
+                            document.getElementById("home").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("Overview"))
+                        {
+                            document.getElementById("overview").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("Region"))
+                        {
+                            document.getElementById("region").classList.add("active");
+                        }
+                });
+            </script>

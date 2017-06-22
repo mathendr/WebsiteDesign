@@ -16,6 +16,7 @@ router.get('/Account/:AccountName', function (req, res) {
         pageID: "Account Overview",
         ItemList: itemlist,
         Location: "../",
+        current: "home"
     });
 });
 

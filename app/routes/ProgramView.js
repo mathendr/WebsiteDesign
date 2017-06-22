@@ -17,6 +17,7 @@ router.get('/Program/:ProjName', function (req, res) {
         pageID: "Program Overview",
         ItemList: itemlist,
         Location: "../",
+        current: "home"
     });
 });
 

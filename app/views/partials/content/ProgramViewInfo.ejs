@@ -1,14 +1,11 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Overview</h1>
-    <h2 class="sub-header">Current Servers</h2>
+    <h1 class="page-header"><%=ItemList[0].ProgramName%></h1>
     <div class="table-responsive">
         <script src = "/chart/sorttable.js"></script>
-        <table class="table table-striped sortable" id="InfoTable">
+        <table class="table sortable" id="InfoTable">
             <thead>
                 <tr>
-                    <th>Server ID</th>
-                    <th>Server Name</th>
-                    <th>Account Name</th>
+                    <td align = "center"><b>Account Name</b></td>
                 </tr>
             </thead>
             <tbody>
@@ -16,21 +13,7 @@
                 <% if (ItemList.length > 0) { %>
                     <% for(i = 0; i < ItemList.length; i++){%>
                         <tr>
-                            <td>
-                                <a href="/ID/<%=ItemList[i].ID%>">
-                                    <%=ItemList[i].ID%>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="<%=ItemList[i].ProgramName%>">
-                                    <%=ItemList[i].ProgramName%>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="/Account/<%=ItemList[i].AccountName%>">
-                                    <%=ItemList[i].AccountName%>
-                                </a>
-                            </td>
+                            <td align = "center"><a href="/ID/<%=ItemList[i].ID%>"><%=ItemList[i].AccountName%></a></td>
                         </tr>
                         <%}%>
                             <%}%>

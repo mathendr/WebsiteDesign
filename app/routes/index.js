@@ -8,9 +8,12 @@ router.get('/', function (req, res) {
     var ProjName = [];
     var AccName = [];
     dataFile.Data.forEach(function (item) {
-        ID = ID.concat(item.ID);
-        ProjName = ProjName.concat(item.ProgramName);
-        AccName = AccName.concat(item.AccountName);
+        if(ProjName.includes(item.ProgramName))
+            {
+                
+            }
+        else
+            ProjName = ProjName.concat(item.ProgramName);
     });
     
 //    PythonShell.run('app/data/DatabaseRetrieve.py',function(err,results){
@@ -21,10 +24,9 @@ router.get('/', function (req, res) {
     res.render('index', {
         pageTitle: 'Home',
         pageID: "home",
-        ID: ID,
-        ProjName: ProjName,
-        AccountName: AccName,
-        Location: ""
+        ProjName: ProjName.sort(),
+        Location: "",
+        current: "home"
     });
 });
 

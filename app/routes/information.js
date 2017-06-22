@@ -21,7 +21,8 @@ router.get('/ID/:itemid', function (req, res) {
         AccName: item.AccountName,
         Config: item.Configuration,
         Region: item.Region,
-        Location: "../"
+        Location: "../",
+        current: "home"
     });
 });
 

@@ -1,8 +1,8 @@
 <body>    
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">Dashboard</h1>
+        <h2 class="page-header">Types of Servers</h2>
 
-    <canvas id="myChart" width="300" height=auto></canvas>
+    <canvas id="myChart" width="250" height=auto></canvas>
      <script src="chart/jquery-3.2.1.min.js"></script>
                     <script src="chart/Chart.js"></script>
 <script>
@@ -10,16 +10,17 @@
 var ctx = document.getElementById("myChart").getContext('2d');
     
 var dict1 = [];
-var dict2 = {};
+var dict2 = [];
 var arrayd = [];
 var arrayl = [];
-var x = "<%= ID[i] %>";
-var y = "<%=ProjName[i] %>";
-var xs = x.split(",")
-var ys = y.split(",")
+var x = "<%= ID %>";
+var y = "<%=ProjName %>";
+var xs = x.split(",");
+var ys = y.split(",");
+
 
 //loads dict with keys and value
-for ( var i = 1; i < x.length; i++  )
+for ( var i = 0; i < x.length; i++  )
 {
     dict1.push({
         key: xs[i],
@@ -27,38 +28,149 @@ for ( var i = 1; i < x.length; i++  )
     });
 }    
 
-console.log(xs);
-console.log(ys);
-////gets list of labels
-//for (var i = 0l i < dict1.length; i++){
-//    if(arrayl.contains(dict1.value[i]) === false){
-//        arrayl.push(ys[i]);
-//    }
-//    if(arrayl.contains(dict1.value[i]) === true){
-//        
-//    }
-//    
-//}
+//gets list of labels
+    
+for (var i = 0; i < ys.length; i++){
+    if(arrayl.indexOf(ys[i]) === -1){
+        arrayl.push(ys[i]);
+    }
+}    
+    
+//sets label dict
+for (var i = 0; i < arrayl.length; i++){
+    dict2.push({
+        key: 0,
+        value: arrayl[i]
+    })
+}
 
-                      
-console.log(dict1);
-     
+//fills label dict
+for (var i = 0; i < ys.length; i++){
+    for (var j= 0; j < dict2.length; j++){
+        if(ys[i] === dict2[j].value){
+            dict2[j].key++;
+        }
+    }
+}
+    
+//gets list of data
+for (var i = 0; i < dict2.length; i++){
+    arrayd.push(dict2[i].key);
+} 
+    
+    
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['red', 'green', 'blue'],
+        labels: arrayl,
         datasets: [{
-            label: 'data sets',
-            data: [12, 13, 4],
+            label: ' # of Servers',
+            data: arrayd,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
             ],
             borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',

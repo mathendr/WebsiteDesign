@@ -22,6 +22,7 @@
             var regionArr=[0, 0 , 0, 0, 0];
             var x = "<%=Region %>";
             var y = x.split(",")
+            console.log(y);
               for(var i = 0; i < x.length; i++){
                 if( y[i] === "NA"){
                    regionArr[0] +=1;
@@ -39,9 +40,6 @@
                     regionArr[4] +=1;
                 }        
             }
-            
-            
-            console.log(regionArr[0]);
             
 
 			var latlong = {};
@@ -82,7 +80,7 @@
 				"color": "#eea638"
 			},{
 				"code": "VE",
-				"name": "LAC",
+				"name": "LAC (Latin America and Caribbean)",
 				"value": regionArr[4],
 				"color": "#2ECC71"
 			},{
@@ -94,7 +92,8 @@
 				"code": "ID",
 				"name": "APJ (Asia, Pacific, Japan)",
 				"value": regionArr[2],
-				"color": "#eea638"
+				"color": "#eea638",
+                
 			},];
 
 
@@ -134,6 +133,10 @@
 					balloonText: "<span style='font-size:14px;'>[[title]]: <b>[[value]]</b></span>",
 					alpha: 0.6
 				}
+                
+                
+                
+                
 
 				var dataProvider = {
 					mapVar: AmCharts.maps.worldLow,
@@ -166,7 +169,8 @@
 						longitude: latlong[id].longitude,
 						latitude: latlong[id].latitude,
 						title: dataItem.name,
-						value: value
+						value: value,
+                        
 					});
 				}
 
@@ -201,7 +205,8 @@
 				map.dataProvider = dataProvider;
 
 				map.write("mapdiv");
-			});
+                
+			});//end of map
 		</script>
     </head>
 

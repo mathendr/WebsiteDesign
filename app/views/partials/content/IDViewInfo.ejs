@@ -1,8 +1,9 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Project ID: <%=ID%></h1>
-    <h2 class="sub-header"><%=ProjName%></h2>
-    <h3>Region: <b><%=Region%></b></h3>
-    <h3>Current Phase: <%=Phase%></h3>
+    <h1 class="page-header"><b><%=ItemList[0].ProgramName%></b></h1>
+    <h2 class = "sub-header">Company: <b><%=ItemList[0].AccountName%></b></h2>
+    <h3>Region: <b><%=ItemList[0].Region%></b></h3>
+    <h3>Project ID: <%=ItemList[0].ID%></h3>
+    <h3>Current Phase:</h3>
     <ul class="progress-tracker progress-tracker--word progress-tracker--word-center">
         <li class = "progress-step" id = "Pending">
             <span class = "progress-marker"></span>
@@ -41,12 +42,11 @@
             </span>
         </li>
     </ul>
-    <h3>Company: <b><%=AccName%></b></h3>
-    <h3>Configuration: <i><%=Config%></i></h3>
+    <h3><b>Configuration:</b> <i><%=ItemList[0].Configuration%></i></h3>
     
     <script>
         var li = ["Pending","Legal","Build","Shipped","Return Request","Returned"];
-        var curphase = "<%=Phase%>";
+        var curphase = "<%=ItemList[0].Phase%>";
         
         if (curphase === "Extension")
             curphase = "Pending";

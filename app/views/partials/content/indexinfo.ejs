@@ -6,18 +6,12 @@
             <thead>
                 <tr>
                     <th>Server Name</th>
-                    <th>Server Name</th>
-                    <th>Server Name</th>
                 </tr>
             </thead>
             <tbody>
                 <% if (ProjName.length > 0) { %>
                     <% for(i = 0; i < (ProjName.length); i++){%>
                         <tr >
-                            <td width = "35%"><a href = "/Program/<%=ProjName[i]%>"><%=ProjName[i]%></a></td>
-                            <%i++%>
-                            <td width = "35%"><a href = "/Program/<%=ProjName[i]%>"><%=ProjName[i]%></a></td>
-                            <%i++%>
                             <td width = "35%"><a href = "/Program/<%=ProjName[i]%>"><%=ProjName[i]%></a></td>
                         </tr>
                         <%}%>

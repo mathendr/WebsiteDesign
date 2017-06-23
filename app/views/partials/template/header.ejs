@@ -52,6 +52,7 @@
             <ul class="nav nav-sidebar">
                 <li id = "home"><a href="/">Home</a></li>
                 <li id = "servername"><a href="/Overview">Server Names</a></li>
+                <li id = "accountlist"><a href="/Account">Account List</a></li>
                 <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
             </ul>
         </div>
@@ -61,6 +62,8 @@
 <script src="/chart/jquery-3.2.1.min.js"></script>
             <script>
                 $(function() {
+                    //in order to add a new Tab you need to set current = to the id in the <li> tag
+                    // up above. if you do not then javascript will throw an error
                     if(<%=current%>.innerHTML.includes("Home"))
                         {
                             document.getElementById("home").classList.add("active");
@@ -72,6 +75,10 @@
                     else if (<%=current%>.innerHTML.includes("worldmap"))
                         {
                             document.getElementById("WorldMap").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("Account"))
+                        {
+                            document.getElementById("accountlist").classList.add("active");
                         }
                 });
             </script>

@@ -1,0 +1,23 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Current Accounts</h1>
+    <div class="table-responsive">
+        <script src = "/chart/sorttable.js"></script>
+        <table class="table table-striped sortable" id = "InfoTable">
+            <thead>
+                <tr>
+                    <th>Accounts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (ItemList.length > 0) { %>
+                    <% for(i = 0; i < ItemList.length; i++){%>
+                <tr>
+                    
+                    <td width = "35%"><a a href = "/Account/<%=ItemList[i]%>"><%=ItemList[i]%></a></td>
+                </tr>
+                        <%}%>
+                    <%}%>
+            </tbody>
+        </table>
+    </div>
+</div>

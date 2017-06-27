@@ -53,6 +53,7 @@
                 <li id = "home"><a href="/">Home</a></li>
                 <li id = "servername"><a href="/Overview">Server Names</a></li>
                 <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
+                <li id = "extrapage"><a href="/extrapage">Extra Page</a></li>
             </ul>
         </div>
     </div>
@@ -72,6 +73,10 @@
                     else if (<%=current%>.innerHTML.includes("worldmap"))
                         {
                             document.getElementById("WorldMap").classList.add("active");
+                        }
+                    else if (<%=current%>.innerHTML.includes("Extra Page"))
+                        {
+                            document.getElementById("extrapage").classList.add("active");
                         }
                 });
             </script>

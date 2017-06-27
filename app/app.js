@@ -17,6 +17,7 @@ app.use(require('./routes/ProgramView'));
 app.use(require('./routes/AccountView'));
 app.use(require('./routes/Overview'));
 app.use(require('./routes/worldmap'));
+app.use(require('./routes/extrapage'));
 
 var server = app.listen(app.get('port'), function () {
     console.log("Listening on port " + app.get('port'));

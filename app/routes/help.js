@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/extrapage', function (req, res) {
+router.get('/help', function (req, res) {
     var dataFile = req.app.get('appData');
     var ID = [];
     var ProjName = [];
@@ -15,14 +15,14 @@ router.get('/extrapage', function (req, res) {
         Region = Region.concat(item.Region);
         Phase = Phase.concat(item.Phase);
     });
-    res.render('extrapage', {
+    res.render('help', {
         pageTitle: 'Home',
         pageID: "home",
         ID: ID,
         ProjName: ProjName,
         AccountName: AccName,
         Location: "",
-        current: "extrapage",
+        current: "help",
         Region: Region,
         Phase: Phase
         

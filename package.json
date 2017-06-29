@@ -11,6 +11,7 @@
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "jquery": "^3.2.1",
+    "mdb": "^0.1.0",
     "mysql": "^2.13.0",
     "progress-tracker": "^1.0.0",
     "python-shell": "^0.4.0",

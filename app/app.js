@@ -1,3 +1,16 @@
+/*
+Equivalent of prime dashboard, link to graphical rep.
+
+Adding sort by platform, region, country, city in that order. (NA by state)
+
+Try to export table to excel
+
+Security login bc people are idiots (more trouble than worth)
+
+host on local ip address
+
+*/
+
 var express = require('express');
 var reload = require('reload');
 var app = express();
@@ -17,6 +30,8 @@ app.use(require('./routes/ProgramView'));
 app.use(require('./routes/AccountView'));
 app.use(require('./routes/Overview'));
 app.use(require('./routes/worldmap'));
+app.use(require('./routes/extrapage'));
+app.use(require('./routes/help'));
 
 var server = app.listen(app.get('port'), function () {
     console.log("Listening on port " + app.get('port'));

@@ -6,10 +6,12 @@ router.get('/Overview', function (req, res) {
     var ID = [];
     var ProjName = [];
     var AccName = [];
+    var Region = [];
     dataFile.Data.forEach(function (item) {
         ID = ID.concat(item.ID);
         ProjName = ProjName.concat(item.ProgramName);
         AccName = AccName.concat(item.AccountName);
+        Region = Region.concat(item.Region);
     });
     res.render('Overview', {
         pageTitle: 'Home',
@@ -18,7 +20,8 @@ router.get('/Overview', function (req, res) {
         ProjName: ProjName,
         AccountName: AccName,
         Location: "",
-        current: "servername"
+        current: "servername",
+        Region: Region
     });
 });
 

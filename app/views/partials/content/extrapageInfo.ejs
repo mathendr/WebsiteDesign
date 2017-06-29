@@ -1,0 +1,104 @@
+<body>    
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+   
+<h1 class="page-header">All Package Progress</h1>     
+    
+<canvas id="myChart" width="250" height="auto"></canvas>
+<script src="chart/jquery-3.2.1.min.js"></script>
+<script src="chart/Chart.js"></script>
+<div>   
+    
+   
+<script>
+    
+var dict1 = [];
+var arrayd = [];
+var arrayl = ["Cancelled", "Pending",  "Legal", "Build", "Shipped", "Return Request", "Returned"];
+var x = "<%= ID %>";
+var y = "<%=Phase %>";
+var xs = x.split(",");
+var ys = y.split(",");
+
+
+//sets label dict
+for (var i = 0; i < arrayl.length; i++){
+    dict1.push({
+        key: 0,
+        value: arrayl[i]
+    })
+}
+
+    
+//fills label dict with data
+for (var i = 0; i < ys.length; i++){
+    for (var j= 0; j < dict1.length; j++){
+        if(ys[i] === dict1[j].value){
+            dict1[j].key++;
+        }
+    }
+}
+
+//gets list of data
+for (var i = 0; i < dict1.length; i++){
+    arrayd.push(dict1[i].key);
+}
+////////////////////////////////////
+var total = 0;
+var percent = [];
+var prettyPer = [];
+
+for (var i = 0; i < dict1.length; i++){
+    total += dict1[i].key;
+}
+    
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+    
+for (var i = 0; i < dict1.length; i++){
+    percent[i] = (dict1[i].key / total);
+    prettyPer[i] = Math.round(roundToTwo(percent[i])*100)
+}  
+
+for (var i = 0; i < arrayl.length; i++){
+    arrayl[i] = arrayl[i].concat(" - "+prettyPer[i])+ "% ";
+}
+
+
+        
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: arrayl,
+        
+        
+        datasets: [{
+          backgroundColor: [
+          "#F51212",
+          "#F26419",
+          "#F2A019",
+          "#F2D419",
+          "#C9FF00",
+          "#6CFF00",
+          "#19F257"
+          ],
+          data: arrayd
+        }]
+      },
+    options: {
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    }
+    }
+    
+    });
+
+</script>
+</div>
+    
+
+    
+</div>
+</body>

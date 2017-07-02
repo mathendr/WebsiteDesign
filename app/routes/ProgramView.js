@@ -9,13 +9,27 @@ router.get('/Program/:ProjName', function (req, res) {
     for(i = 0; i < item.length; i++)
         {
             if(item[i].ProgramName === (req.params.ProjName)){
-                itemlist = itemlist.concat(item[i]);
+                var cont = true;
+                for(x = 0; x < itemlist.length; x++)
+                {
+                    if(itemlist[x].AccountName === item[i].AccountName)
+                        cont = false;
+                }
+                if(cont)
+                    itemlist = itemlist.concat(item[i]);
             }
         }
+    itemlist = itemlist.sort(function(a,b){
+            if(a.AccountName < b.AccountName)
+                return -1;
+            if(a.AccountName > b.AccountName)
+                return 1;
+            return 0;
+        });
     res.render('ProgramView', {
         pageTitle: 'Program Overview',
         pageID: "Program Overview",
-        ItemList: itemlist.sort(),
+        ItemList: itemlist,
         Location: "../",
         current: "home"
     });
@@ -32,14 +46,19 @@ router.get('/Program/:ProjName/:AccountName', function (req, res) {
         }
     }
 
-
-    res.render('AccountView', {
-        pageTitle: 'Account Overview',
-        pageID: "Account Overview",
-        ItemList: itemlist,
-        Location: "../../",
-        current: "home"
-    });
+    if(itemlist.length == 1)
+    {
+          res.redirect('/Program/' +req.params.ProjName+ '/'+req.params.AccountName+'/' + itemlist[0].ID);  
+    }
+    else{
+        res.render('AccountView', {
+            pageTitle: 'Account Overview',
+            pageID: "Account Overview",
+            ItemList: itemlist,
+            Location: "../../",
+            current: "home"
+        });
+    }
 });
 
 router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
@@ -52,8 +71,6 @@ router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
             itemlist = itemlist.concat(item[i]);
         }
     }
-
-    console.log(itemlist[0]);
     res.render('IDView', {
         pageTitle: 'Sever Overview',
         pageID: "Sever Overview",

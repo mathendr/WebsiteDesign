@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-               <li id = "home"><a href="/">Home</a></li>
+               <li id = "home"><a href="/">Server List</a></li>
                 <li id = "accountlist"><a href="/Account">Account List</a></li>
                 <li id = "servername"><a href="/Overview">Server Graph</a></li>
                 <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
@@ -65,20 +65,20 @@
                 $(function() {
                     //in order to add a new Tab you need to set current = to the id in the <li> tag
                     // up above. if you do not then javascript will throw an error
-                    if(<%=current%>.innerHTML.includes("Home"))
+                    if(<%=current%>.innerHTML.includes("Server List"))
                         {
                             document.getElementById("home").classList.add("active");
                         }
-                    else if (<%=current%>.innerHTML.includes("Server Name"))
+                    else if (<%=current%>.innerHTML.includes("Server Graph"))
                         {
                             document.getElementById("servername").classList.add("active");
                         }
-                    else if (<%=current%>.innerHTML.includes("worldmap"))
+                    else if (<%=current%>.innerHTML.includes("World Map"))
                         {
                             document.getElementById("WorldMap").classList.add("active");
                         }
 
-                    else if (<%=current%>.innerHTML.includes("Extra Page"))
+                    else if (<%=current%>.innerHTML.includes("extrapage"))
                         {
                             document.getElementById("extrapage").classList.add("active");
                         }

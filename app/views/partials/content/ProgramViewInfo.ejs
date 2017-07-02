@@ -6,6 +6,7 @@
             <thead>
                 <tr>
                     <th><b>Account Name</b></th>
+                    <th><b>Phase</b></th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +15,7 @@
                     <% for(i = 0; i < ItemList.length; i++){%>
                         <tr>
                             <td><a href="/Program/<%=ItemList[i].ProgramName%>/<%=ItemList[i].AccountName%>"><%=ItemList[i].AccountName%></a></td>
+                            <td><%=ItemList[i].Phase%></td>
                         </tr>
                         <%}%>
                             <%}%>

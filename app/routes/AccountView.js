@@ -13,7 +13,7 @@ router.get('/Account',function(req,res){
     res.render('AccountOverview', {
         pageTitle: 'Account Overview',
         pageID: "Account Overview",
-        ItemList: itemlist,
+        ItemList: itemlist.sort(),
         Location: "../",
         current: "accountlist"
     });

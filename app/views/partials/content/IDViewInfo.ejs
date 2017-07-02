@@ -1,14 +1,21 @@
+<style>
+h4 {
+    white-space:normal;
+    text-align:center;
+    }
+</style>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header"><b><%=ItemList[0].ProgramName%></b></h1>
     <h2 class = "sub-header">Company: <b><%=ItemList[0].AccountName%></b></h2>
     <h3>Region: <b><%=ItemList[0].Region%></b></h3>
-    <h3>Project ID: <%=ItemList[0].ID%></h3>
-    <h3>Current Phase:</h3>
-    <ul class="progress-tracker progress-tracker--word progress-tracker--word-center">
+    
+    <h3>Location: <%=ItemList[0].City%>,<%=ItemList[0].Country%></h3>
+    <h3>Current Phase: <%=ItemList[0].Phase%></h3>
+    <ul id = "Phase" style= "display:none;" class="progress-tracker progress-tracker--word progress-tracker--word-center progress-tracker--spaced">
         <li class = "progress-step" id = "Pending">
             <span class = "progress-marker"></span>
             <span class = "progress-text">
-                <h4 class = "progress-title"> Pending </h4>
+                <h4 class = "progress-title"> Pending</h4>
             </span>
         </li>
         <li class = "progress-step" id = "Legal">
@@ -42,8 +49,39 @@
             </span>
         </li>
     </ul>
-    <h3><b>Configuration:</b> <i><%=ItemList[0].Configuration%></i></h3>
     
+    <ul id = "InShipment" style= "display:none;" class="progress-tracker progress-tracker--word progress-tracker--word-center progress-tracker--spaced">
+        <li class = "progress-step" id = "InTransit">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> In Transit</h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "HPEOffice">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> HPE Office </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "AwaitingInstallation">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Awaiting Installation </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "InstallationInProgress">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Installation In Progress </h4>
+            </span>
+        </li>
+        <li class = "progress-step" id = "Operational">
+            <span class = "progress-marker"></span>
+            <span class = "progress-text">
+                <h4 class = "progress-title"> Operational</h4>
+            </span>
+        </li>
+    </ul>
     <script>
         var li = ["Pending","Legal","Build","Shipped","Return Request","Returned"];
         var curphase = "<%=ItemList[0].Phase%>";
@@ -51,12 +89,45 @@
         if (curphase === "Extension")
             curphase = "Pending";
         
-        for(i = 0; i < li.indexOf(curphase); i++)
+        if(curphase === "Shipped")
         {
-            document.getElementById(li[i]).classList.add("is-complete");
+            document.getElementById("InShipment").style.display = "";
+            document.getElementById("Phase").style.display = "none";
+            var value = 0;
+            var lid = ["InTransit","HPEOffice","AwaitingInstallation","InstallationInProgress","Operational"];
+            
+            if("<%=ItemList[0].InTransit%>" === "X")
+                value = 0;
+            else if("<%=ItemList[0].HPEOffice%>" === "X")
+                value = 1;
+            else if("<%=ItemList[0].AwaitingInstallation%>" === "X")
+                value = 2;
+            else if("<%=ItemList[0].InstallationInProgress%>" === "X")
+                value = 3;
+            else if("<%=ItemList[0].Operational%>" === "X")
+                value = 4;
+            
+            for(i = 0; i <value; i++)
+            {
+                    document.getElementById(lid[i]).classList.add("is-complete");
+            }
+             if(value !== -1)
+                document.getElementById(lid[value]).classList.add("is-active");
         }
-        if(li.indexOf(curphase) !== -1)
-            document.getElementById(li[li.indexOf(curphase)]).classList.add("is-active");
+        else{
+            document.getElementById("InShipment").style.display = "none";
+            document.getElementById("Phase").style.display = "";
+            for(i = 0; i < li.indexOf(curphase); i++)
+            {
+                document.getElementById(li[i]).classList.add("is-complete");
+            }
+            if(li.indexOf(curphase) !== -1)
+                document.getElementById(li[li.indexOf(curphase)]).classList.add("is-active");
+        }
             
     </script>
+    
+    <h3><b>Configuration:</b> <i><%=ItemList[0].Configuration%></i></h3>
+    
+    
 </div>

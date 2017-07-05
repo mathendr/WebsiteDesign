@@ -15,12 +15,6 @@ router.get('/', function (req, res) {
         else
             ProjName = ProjName.concat(item.ProgramName);
     });
-    
-//    PythonShell.run('app/data/DatabaseRetrieve.py',function(err,results){
-//        if(err) 
-//            throw err;
-//        console.log(results);
-//    });
     res.render('index', {
         pageTitle: 'Home',
         pageID: "home",

@@ -30,13 +30,13 @@ app.locals.siteTitle = 'Prime';
 
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
-app.use(require('./routes/information'));
 app.use(require('./routes/ProgramView'));
 app.use(require('./routes/AccountView'));
 app.use(require('./routes/Overview'));
 app.use(require('./routes/worldmap'));
 app.use(require('./routes/extrapage'));
 app.use(require('./routes/help'));
+app.use(require('./routes/Region'));
 
 var server = app.listen(app.get('port'), function () {
     console.log("Listening on port " + app.get('port'));

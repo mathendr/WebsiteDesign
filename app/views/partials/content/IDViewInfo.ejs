@@ -9,7 +9,7 @@ h4 {
     <h2 class = "sub-header">Company: <b><%=ItemList[0].AccountName%></b></h2>
     <h3>Region: <b><%=ItemList[0].Region%></b></h3>
     
-    <h3>Location: <%=ItemList[0].City%>,<%=ItemList[0].Country%></h3>
+    <h3>Location: <%=ItemList[0].City%>,<%=ItemList[0].State%> <%=ItemList[0].Country%></h3>
     <h3>Current Phase: <%=ItemList[0].Phase%></h3>
     <ul id = "Phase" style= "display:none;" class="progress-tracker progress-tracker--word progress-tracker--word-center progress-tracker--spaced">
         <li class = "progress-step" id = "Pending">
@@ -93,7 +93,7 @@ h4 {
         {
             document.getElementById("InShipment").style.display = "";
             document.getElementById("Phase").style.display = "none";
-            var value = 0;
+            var value = -1;
             var lid = ["InTransit","HPEOffice","AwaitingInstallation","InstallationInProgress","Operational"];
             
             if("<%=ItemList[0].InTransit%>" === "X")

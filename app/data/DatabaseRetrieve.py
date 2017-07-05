@@ -23,9 +23,19 @@ def toJson():
         t['Region'] = row[3].strip()
         t['Phase'] = row[4].strip()
         t['Configuration'] = row[5]
-        t['Country'] = row[21]
-        t['City'] = row[24]
-        t['State'] = row[25]
+        if(row[21] is not None):
+            t['Country'] = row[21].strip()
+        else:
+            t['Country'] = row[21]
+        
+        if(row[24] is not None):
+            t['City'] = row[24]
+        else:
+            t['City'] = row[24]
+        if(row[25] is not None):
+            t['State'] = row[25].strip()
+        else:
+            t['State'] = row[25]
         t['InTransit'] = row[73]
         t['HPEOffice'] = row[75]
         t['AwaitingInstallation'] = row[76]

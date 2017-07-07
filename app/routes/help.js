@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var PythonShell = require('python-shell');
 
 router.get('/help', function (req, res) {
-    var dataFile = req.app.get('appData');
+    var dataFile;
+    PythonShell.run('app/data/DatabaseRetrieve.py',function(err, results){
+        if(err) throw err;
+        dataFile = JSON.parse(results);
+    });
     var ID = [];
     var ProjName = [];
     var AccName = [];

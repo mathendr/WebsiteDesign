@@ -1,83 +1,98 @@
 var express = require('express');
 var router = express.Router();
-
+var PythonShell = require('python-shell');
 
 router.get('/Program/:ProjName', function (req, res) {
-    var dataFile = req.app.get('appData');
-    var item = dataFile.Data;
-    var itemlist = [];
-    for(i = 0; i < item.length; i++)
-        {
-            if(item[i].ProgramName === (req.params.ProjName)){
-                var cont = true;
-                for(x = 0; x < itemlist.length; x++)
-                {
-                    if(itemlist[x].AccountName === item[i].AccountName)
-                        cont = false;
-                }
-                if(cont)
-                    itemlist = itemlist.concat(item[i]);
-            }
-        }
-    itemlist = itemlist.sort(function(a,b){
-            if(a.AccountName < b.AccountName)
-                return -1;
-            if(a.AccountName > b.AccountName)
-                return 1;
-            return 0;
-        });
-    res.render('ProgramView', {
-        pageTitle: 'Program Overview',
-        pageID: "Program Overview",
-        ItemList: itemlist,
-        Location: "../",
-        current: "home"
+    var dataFile;
+    var pyshell = new PythonShell('app/data/GetAccounts.py');
+    pyshell.send("'"+req.params.ProjName+"'");
+    pyshell.on('message',function(message){
+        dataFile = JSON.parse(message);
+        continued(res);
     });
+   pyshell.end(function(err){
+       if(err) throw err;
+       console.log('finished');
+   });
+    function continued(res)
+    {
+        var itemlist = [];
+        for(i = 0; i < dataFile.length; i++)
+        {
+            itemlist = itemlist.concat(dataFile[i]);
+        }
+        res.render('ProgramView', {
+            pageTitle: 'Program Overview',
+            pageID: "Program Overview",
+            ItemList: itemlist.sort(),
+            Location: "../",
+            current: "home",
+            URL: "/Program/"+req.params.ProjName
+        });
+    }
 });
 
 router.get('/Program/:ProjName/:AccountName', function (req, res) {
-    var dataFile = req.app.get('appData');
-    var item = dataFile.Data;
-    var itemlist = [];
-    for (i = 0; i < item.length; i++) {
-        if ((item[i].ProgramName === req.params.ProjName) && (item[i].AccountName === req.params.AccountName)) 
-        {
-            itemlist = itemlist.concat(item[i]);
-        }
-    }
-
-    if(itemlist.length == 1)
+   var pyshell = new PythonShell('app/data/GetProjAccount.py');
+    pyshell.send("'"+req.params.ProjName+"'");
+    pyshell.send("'"+req.params.AccountName+"'");
+    pyshell.on('message',function(message){
+        dataFile = JSON.parse(message);
+        continued(res);
+    });
+    function continued(res)
     {
-          res.redirect('/Program/' +req.params.ProjName+ '/'+req.params.AccountName+'/' + itemlist[0].ID);  
-    }
-    else{
-        res.render('AccountView', {
-            pageTitle: 'Account Overview',
-            pageID: "Account Overview",
-            ItemList: itemlist,
-            Location: "../../",
-            current: "home"
-        });
-    }
+
+        if (dataFile.length == 1) 
+        {
+            if (dataFile[0].Configuration != null)
+                var config = dataFile[0].Configuration.split("\r\n");
+            else
+                var config = "";
+            res.render('IDView', {
+                pageTitle: 'Sever Overview',
+                pageID: "Sever Overview",
+                ItemList: dataFile,
+                Config: config,
+                Location: "../../../",
+                current: "home"
+            });
+        }
+        else{
+            res.render('AccountView', {
+                pageTitle: 'Account Overview',
+                pageID: "Account Overview",
+                ItemList: dataFile,
+                Location: "../../",
+                current: "home"
+            });
+        }
+    };
 });
 
 router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
-    var dataFile = req.app.get('appData');
-    var item = dataFile.Data;
-    var itemlist = [];
-    for (i = 0; i < item.length; i++) {
-        if ((item[i].ID == req.params.ID)) 
-        {
-            itemlist = itemlist.concat(item[i]);
-        }
-    }
-    res.render('IDView', {
-        pageTitle: 'Sever Overview',
-        pageID: "Sever Overview",
-        ItemList: itemlist,
-        Location: "../../../",
-        current: "home"
+    var dataFile;
+    var pyshell = new PythonShell('app/data/GetID.py');
+    pyshell.send("'"+req.params.ID+"'");
+    pyshell.on('message',function(message){
+        dataFile = JSON.parse(message);
+        continued(res);
     });
+    function continued(res)
+    {
+        if(dataFile[0].Configuration != null)
+            var config = dataFile[0].Configuration.split("\r\n");
+        else
+            var config = "";
+        res.render('IDView', {
+            pageTitle: 'Sever Overview',
+            pageID: "Sever Overview",
+            ItemList: dataFile,
+            Config: config,
+            Location: "../../../",
+            current: "home"
+        });
+    }
 });
 
 module.exports = router;

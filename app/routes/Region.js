@@ -3,7 +3,11 @@ var router = express.Router();
 var PythonShell = require('python-shell');
 
 router.get('/Region', function (req, res) {
-    var dataFile = require('../data/database.json');
+    var dataFile;
+    PythonShell.run('app/data/DatabaseRetrieve.py',function(err, results){
+        if(err) throw err;
+        dataFile = JSON.parse(results);
+    });
     var ID = [];
     var Regions = [];
     var AccName = [];
@@ -26,7 +30,11 @@ router.get('/Region', function (req, res) {
 
 
 router.get('/Region/:Region', function (req, res) {
-    var dataFile = require('../data/database.json');
+    var dataFile;
+    PythonShell.run('app/data/DatabaseRetrieve.py',function(err, results){
+        if(err) throw err;
+        dataFile = JSON.parse(results);
+    });
     var ID = [];
     var Country = [];
     var AccName = [];

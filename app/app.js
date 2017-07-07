@@ -14,11 +14,6 @@ host on local ip address
 var express = require('express');
 var reload = require('reload');
 var app = express();
-var PythonShell = require('python-shell');
-PythonShell.run('app/data/DatabaseRetrieve.py',function(err){
-    if(err) throw err;
-    console.log('finished');
-});
 var dataFile = require('./data/database.json');
 
 app.set('port', process.env.PORT || 3000);

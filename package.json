@@ -4,7 +4,7 @@
   "description": "Testing Node.js for use later",
   "main": "app/app.js",
   "scripts": {
-    "start": "nodemon -e css,ejs,js,accdb --watch app"
+    "start": "nodemon -e css,ejs,js --watch app"
   },
   "author": "Matthew Hendrick",
   "dependencies": {

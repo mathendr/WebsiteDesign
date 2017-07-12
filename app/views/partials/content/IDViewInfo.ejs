@@ -91,6 +91,7 @@ h4 {
             <%=ItemList[0].Operational = "X"%> = "X";
         }
         
+        //change to current one to be blue
         if(curphase === "Shipped")
         {
             document.getElementById("InShipment").style.display = "";
@@ -109,27 +110,19 @@ h4 {
             else if("<%=ItemList[0].Operational%>" === "X")
                 value = 4;
             
-            for(i = 0; i <value; i++)
-            {
-                document.getElementById(lid[i]).classList.add("is-complete");
-            }
-             if(value !== -1)
-                document.getElementById(lid[value]).classList.add("is-active");
+            document.getElementById(lid[value]).classList.add("is-complete");
         }
         else{
             document.getElementById("InShipment").style.display = "none";
             document.getElementById("Phase").style.display = "";
-            for(i = 0; i < li.indexOf(curphase); i++)
-            {
-                document.getElementById(li[i]).classList.add("is-complete");
-            }
-            if(li.indexOf(curphase) !== -1)
-                document.getElementById(li[li.indexOf(curphase)]).classList.add("is-active");
+            var value =li.indexOf(curphase);
+                document.getElementById(li[value]).classList.add("is-complete");
+            
         }
             
     </script>
-    <h5>*Subject to change due to availability and limited resources.</h5>
     <h3><b>Configuration:</b></h3>
+    <h5>*Subject to change due to availability and limited resources.</h5>
         <% for(i = 0; i < Config.length; i++){%>
             <%if(Config[i] !== "")%>
                 <li><%=Config[i]%></li>

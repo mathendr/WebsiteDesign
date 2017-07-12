@@ -4,30 +4,34 @@ var PythonShell = require('python-shell');
 
 router.get('/Overview', function (req, res) {
     var dataFile;
-    PythonShell.run('app/data/DatabaseRetrieve.py',function(err, results){
-        if(err) throw err;
-        dataFile = JSON.parse(results);
+    var pyshell = new PythonShell('app/data/OverviewData.py');
+    pyshell.on('message',function(message){
+        dataFile = JSON.parse(message);
+        continued(res);
     });
-    var ID = [];
-    var ProjName = [];
-    var AccName = [];
-    var Region = [];
-    dataFile.Data.forEach(function (item) {
-        ID = ID.concat(item.ID);
-        ProjName = ProjName.concat(item.ProgramName);
-        AccName = AccName.concat(item.AccountName);
-        Region = Region.concat(item.Region);
-    });
-    res.render('Overview', {
-        pageTitle: 'Home',
-        pageID: "home",
-        ID: ID,
-        ProjName: ProjName,
-        AccountName: AccName,
-        Location: "",
-        current: "servername",
-        Region: Region
-    });
+    function continued(res)
+    {
+        var ID = [];
+        var ProjName = [];
+        var AccName = [];
+        var Region = [];
+        for(i = 0; i < dataFile.length; i++){
+            ID = ID.concat(dataFile[i].ID);
+            ProjName = ProjName.concat(dataFile[i].ProgramName);
+            AccName = AccName.concat(dataFile[i].AccountName);
+            Region = Region.concat(dataFile[i].Region);
+        }
+        res.render('Overview', {
+            pageTitle: 'Home',
+            pageID: "home",
+            ID: ID,
+            ProjName: ProjName,
+            AccountName: AccName,
+            Location: "",
+            current: "servername",
+            Region: Region
+        });
+    };
 });
 
 module.exports = router;

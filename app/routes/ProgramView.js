@@ -5,36 +5,46 @@ var PythonShell = require('python-shell');
 router.get('/Program/:ProjName', function (req, res) {
     var dataFile;
     var pyshell = new PythonShell('app/data/GetAccounts.py');
-    pyshell.send("'"+req.params.ProjName+"'");
+    pyshell.send("'"+req.params.ProjName.replace("_","/")+"'");
     pyshell.on('message',function(message){
         dataFile = JSON.parse(message);
-        continued(res);
+        continued(res,req);
     });
    pyshell.end(function(err){
        if(err) throw err;
        console.log('finished');
    });
-    function continued(res)
+    
+    function continued(res,req)
     {
-        var itemlist = [];
+        var itemList = [];
         for(i = 0; i < dataFile.length; i++)
         {
-            itemlist = itemlist.concat(dataFile[i]);
+            itemList = itemList.concat(dataFile[i]);
         }
+        itemList.sort(function(a,b){
+        if(a.AccountName > b.AccountName){
+            return 1;
+        }else if(a.AccountName < b.AccountName){
+            return -1;
+        }
+        return 0;
+        });
         res.render('ProgramView', {
             pageTitle: 'Program Overview',
             pageID: "Program Overview",
-            ItemList: itemlist.sort(),
+            ItemList: itemList,
             Location: "../",
             current: "home",
-            URL: "/Program/"+req.params.ProjName
+            URL: "/Program/"+req.params.ProjName,
+            ProjName: req.params.ProjName.replace("_","/")
         });
     }
 });
 
 router.get('/Program/:ProjName/:AccountName', function (req, res) {
    var pyshell = new PythonShell('app/data/GetProjAccount.py');
-    pyshell.send("'"+req.params.ProjName+"'");
+    pyshell.send("'"+req.params.ProjName.replace("_","/")+"'");
     pyshell.send("'"+req.params.AccountName+"'");
     pyshell.on('message',function(message){
         dataFile = JSON.parse(message);

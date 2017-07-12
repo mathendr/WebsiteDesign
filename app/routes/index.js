@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
     function continued(res){
         var ProjName = [];
         for(i = 0; i < dataFile.length; i++)
-             ProjName = ProjName.concat(dataFile[i]);
+             ProjName = ProjName.concat(dataFile[i].replace("/","_"));
         res.render('index', {
             pageTitle: 'Home',
             pageID: "home",

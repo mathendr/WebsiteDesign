@@ -10,17 +10,15 @@ router.get('/Program/:ProjName', function (req, res) {
         dataFile = JSON.parse(message);
         continued(res,req);
     });
-   pyshell.end(function(err){
-       if(err) throw err;
-       console.log('finished');
-   });
     
     function continued(res,req)
     {
         var itemList = [];
+        var regions = []
         for(i = 0; i < dataFile.length; i++)
         {
             itemList = itemList.concat(dataFile[i]);
+            regions = regions.concat(dataFile[i].Region);
         }
         itemList.sort(function(a,b){
         if(a.AccountName > b.AccountName){
@@ -34,6 +32,7 @@ router.get('/Program/:ProjName', function (req, res) {
             pageTitle: 'Program Overview',
             pageID: "Program Overview",
             ItemList: itemList,
+            Regions: regions,
             Location: "../",
             current: "home",
             URL: "/Program/"+req.params.ProjName,

@@ -7,7 +7,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <img class ="navbar-brand" src = "/images/HPELogo.jpg" width="100" height = "50">
+            <img class ="navbar-brand" src = "/images/HPELogo.jpg" width="100" height = "50" usemap = "#hpemap">
+            <map name = "hpemap">
+                <area shape = "rect" coords = "0,0,100,50" href = "/">
+            </map>
             <a style = "color: Black" class="navbar-brand" href = "/">Beta Testing Product Information</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" style = "color: #425563">
@@ -49,11 +52,9 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-2 col-md-2 sidebar">
             <ul  class="nav nav-sidebar">
                <li id = "home"><a href="/">Beta Programs</a></li>
-                <!--<li id = "accountlist"><a href="/Account">Account List</a></li>
-                <li id = "Regions"> <a href = "/Region">Regions</a></li>-->
                 <li id = "servername"><a href="/Overview">Server Graph</a></li>
                 <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
                 <li id = "extrapage"><a href="/extrapage">All Product Status</a></li>

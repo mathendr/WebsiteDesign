@@ -8,7 +8,7 @@ from StringIO import StringIO
 pypyodbc.lowercase = False
 conn = pypyodbc.connect(
 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};" +
-r"Dbq=C:\Users\hendrima\Desktop\nodejs_practice\app\data\Prime_BE.accdb")
+r"Dbq=C:\Users\penga\Documents\GitHub\WebsiteDesign\app\data\Prime_BE.accdb")
 cur = conn.cursor()
 cur.execute("SELECT distinct ProgramName FROM ReservationsTable");
 rows = cur.fetchall()

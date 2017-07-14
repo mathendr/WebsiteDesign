@@ -79,29 +79,29 @@ router.get('/Program/:ProjName/:AccountName', function (req, res) {
     };
 });
 
-router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
-    var dataFile;
-    var pyshell = new PythonShell('app/data/GetID.py');
-    pyshell.send("'"+req.params.ID+"'");
-    pyshell.on('message',function(message){
-        dataFile = JSON.parse(message);
-        continued(res);
-    });
-    function continued(res)
-    {
-        if(dataFile[0].Configuration != null)
-            var config = dataFile[0].Configuration.split("\r\n");
-        else
-            var config = "";
-        res.render('IDView', {
-            pageTitle: 'Sever Overview',
-            pageID: "Sever Overview",
-            ItemList: dataFile,
-            Config: config,
-            Location: "../../../",
-            current: "home"
-        });
-    }
-});
+//router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
+//    var dataFile;
+//    var pyshell = new PythonShell('app/data/GetID.py');
+//    pyshell.send("'"+req.params.ID+"'");
+//    pyshell.on('message',function(message){
+//        dataFile = JSON.parse(message);
+//        continued(res);
+//    });
+//    function continued(res)
+//    {
+//        if(dataFile[0].Configuration != null)
+//            var config = dataFile[0].Configuration.split("\r\n");
+//        else
+//            var config = "";
+//        res.render('IDView', {
+//            pageTitle: 'Sever Overview',
+//            pageID: "Sever Overview",
+//            ItemList: dataFile,
+//            Config: config,
+//            Location: "../../../",
+//            current: "home"
+//        });
+//    }
+//});
 
 module.exports = router;

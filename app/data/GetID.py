@@ -8,7 +8,7 @@ from StringIO import StringIO
 pypyodbc.lowercase = False
 conn = pypyodbc.connect(
 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};" +
-r"Dbq=C:\Users\hendrima\Desktop\nodejs_practice\app\data\Prime_BE.accdb")
+r"Dbq=C:\Users\hendrima\Desktop\nodejs_practice\app\data\Prime_BE.accdb;")
 cur = conn.cursor()
 ID = input()
 cur.execute("SELECT * FROM ReservationsTable WHERE ReservationID = "+ID);
@@ -44,3 +44,5 @@ for row in rows:
 io = StringIO()
 json.dump(rowarray_list,io)
 print(io.getvalue())
+conn.close();
+cur.close();

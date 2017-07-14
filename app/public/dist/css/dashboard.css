@@ -4,7 +4,7 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
+  padding-top: 80px;
 }
 
 a:link,a:visited{
@@ -43,8 +43,13 @@ tr:hover{
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
-  border: ;
+  padding-top: 6px;
+  height: 70px;
+  margin-bottom: 5px;
+  
+  
 }
+
 
 /*
  * Sidebar
@@ -63,6 +68,7 @@ tr:hover{
     z-index: 1000;
     display: block;
     padding: 20px;
+    padding-top: 40px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #e6e6e6;

@@ -41,3 +41,5 @@ for row in rows:
 io = StringIO()
 json.dump(rowarray_list,io)
 print(io.getvalue())
+conn.close();
+cur.close();

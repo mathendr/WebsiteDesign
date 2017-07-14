@@ -82,14 +82,23 @@ router.get('/Program/:ProjName/:AccountName', function (req, res) {
     };
 });
 
-router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
-    var dataFile;
-    var pyshell = new PythonShell('app/data/GetID.py');
-    pyshell.send("'"+req.params.ID+"'");
-    pyshell.on('message',function(message){
-        dataFile = JSON.parse(message);
-        continued(res);
-    });
+/*router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
+    start(req,res);
+    function start(req,res){
+        var dataFile;
+        try{
+        //var pyshell = new PythonShell('app/data/GetID.py');
+        }
+        catch(err)
+            {
+                console.log("here");
+                return;
+            }
+        //pyshell.send("'"+req.params.ID+"'");
+        //pyshell.on('message',function(message){
+            //dataFile = JSON.parse(message);
+            //continued(res);
+        };
     function continued(res)
     {
         if(dataFile[0].Configuration != null)
@@ -105,6 +114,6 @@ router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
             current: "home"
         });
     }
-});
+});*/
 
 module.exports = router;

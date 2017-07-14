@@ -7,7 +7,7 @@ router.get('/extrapage', function (req, res) {
     PythonShell.run('app/data/DatabaseRetrieve.py',function(err, results){
         if(err) throw err;
         dataFile = JSON.parse(results);
-        
+         
     });
     var ID = [];
     var ProjName = [];

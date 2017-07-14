@@ -14,11 +14,13 @@ router.get('/Program/:ProjName', function (req, res) {
     function continued(res,req)
     {
         var itemList = [];
-        var regions = []
+        var regions = [];
+        var Phase = [];
         for(i = 0; i < dataFile.length; i++)
         {
             itemList = itemList.concat(dataFile[i]);
             regions = regions.concat(dataFile[i].Region);
+            Phase = Phase.concat(dataFile[i].Phase);
         }
         itemList.sort(function(a,b){
         if(a.AccountName > b.AccountName){
@@ -29,11 +31,12 @@ router.get('/Program/:ProjName', function (req, res) {
         return 0;
         });
         res.render('ProgramView', {
-            pageTitle: 'Program Overview',
+            pageTitle: req.params.ProjName,
             pageID: "Program Overview",
             ItemList: itemList,
             Regions: regions,
             Location: "../",
+            Phase: Phase,
             current: "home",
             URL: "/Program/"+req.params.ProjName,
             ProjName: req.params.ProjName.replace("_","/")

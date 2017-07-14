@@ -6,9 +6,11 @@ import json
 from StringIO import StringIO
 
 pypyodbc.lowercase = False
+file = open('app/data/resources.txt','r')
+location = file.read()
 conn = pypyodbc.connect(
 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};" +
-r"Dbq=C:\Users\penga\Documents\GitHub\WebsiteDesign\app\data\Prime_BE.accdb")
+r"Dbq="+location+"\Prime_BE.accdb")
 cur = conn.cursor()
 cur.execute("SELECT * FROM ReservationsTable");
 rows = cur.fetchall()

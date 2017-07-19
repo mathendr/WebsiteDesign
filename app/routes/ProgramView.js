@@ -2,6 +2,26 @@ var express = require('express');
 var router = express.Router();
 var PythonShell = require('python-shell');
 
+router.get('/Program',function(req,res){
+    var pyshell = new PythonShell('app/data/GetServers.py');
+    pyshell.on('message',function(message){
+        dataFile = JSON.parse(message);
+        continued(res);
+    });
+    function continued(res){
+        var ProjName = [];
+        for(i = 0; i < dataFile.length; i++)
+             ProjName = ProjName.concat(dataFile[i].replace("/","_"));
+        res.render('ProgramHome', {
+            pageTitle: 'Home',
+            pageID: "home",
+            ProjName: ProjName.sort(),
+            Location: "",
+            current: "program"
+        });
+    };
+});
+
 router.get('/Program/:ProjName', function (req, res) {
     var dataFile;
     var pyshell = new PythonShell('app/data/GetAccounts.py');
@@ -37,7 +57,7 @@ router.get('/Program/:ProjName', function (req, res) {
             Regions: regions,
             Location: "../",
             Phase: Phase,
-            current: "home",
+            current: "program",
             URL: "/Program/"+req.params.ProjName,
             ProjName: req.params.ProjName.replace("_","/")
         });
@@ -67,7 +87,7 @@ router.get('/Program/:ProjName/:AccountName', function (req, res) {
                 ItemList: dataFile,
                 Config: config,
                 Location: "../../../",
-                current: "home"
+                current: "program"
             });
         }
         else{
@@ -76,35 +96,10 @@ router.get('/Program/:ProjName/:AccountName', function (req, res) {
                 pageID: "Account Overview",
                 ItemList: dataFile,
                 Location: "../../",
-                current: "home"
+                current: "program"
             });
         }
     };
 });
-
-//router.get('/Program/:ProjName/:AccountName/:ID', function (req, res) {
-//    var dataFile;
-//    var pyshell = new PythonShell('app/data/GetID.py');
-//    pyshell.send("'"+req.params.ID+"'");
-//    pyshell.on('message',function(message){
-//        dataFile = JSON.parse(message);
-//        continued(res);
-//    });
-//    function continued(res)
-//    {
-//        if(dataFile[0].Configuration != null)
-//            var config = dataFile[0].Configuration.split("\r\n");
-//        else
-//            var config = "";
-//        res.render('IDView', {
-//            pageTitle: 'Sever Overview',
-//            pageID: "Sever Overview",
-//            ItemList: dataFile,
-//            Config: config,
-//            Location: "../../../",
-//            current: "home"
-//        });
-//    }
-//});
 
 module.exports = router;

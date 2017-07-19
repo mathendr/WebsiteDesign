@@ -1,6 +1,8 @@
 <div class="col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-2 main">
-    <h1 class="page-header"><%=ProjName%></h1>
-    
+    <div id = "excellblock">
+        <h1 id = "stuff" style= "display: inline-block;"><%=ProjName%></h1>
+        <button class="btnExample" type="submit" value="Submit" onclick='excel();'><img src="/imgs/excel.png" width="18" height="18" alt=""/> Export to Excel</button>
+    </div>
     
         <div>
     <script src="/chart/jquery-3.2.1.min.js"></script>
@@ -27,11 +29,6 @@
         }
     </script>
 </div>
-    <p align="right">
-    <button class="btnExample" type="submit" value="Submit" onclick='excel();'><img src="/imgs/excel.png" width="18" height="18" alt=""/> Export to Excel</button>
-    </p>
-    
-    
     <div class="table-responsive">
         <script src = "/chart/sorttable.js"></script>
         <table class="table table-responsive sortable" id="InfoTable">
@@ -58,7 +55,7 @@
 <div class="col-sm-4 col-md-4">
     <div class="sidebar-nav-fixed pull-right affix">
         <h3><b>Region Map</b></h3>
-        <div id="mapdiv" style="width: 325px; height: 250px;" style="background-color:#222222;"></div>
+        <div id="mapdiv" style="width: 325px; height: 200px;" style="background-color:#222222;"></div>
         <h3><b>Shipping Overview</b></h3>
         <canvas id="myChart" width="325px" height="200px"></canvas>
     </div>
@@ -314,10 +311,10 @@ var myChart = new Chart(ctx, {
         datasets: [{
           backgroundColor: [
           "#6CFF00",
-          "#19F257",
           "#F2D419",
           "#C9FF00",
           "#F26419",
+          "#19F257",
           "#F2A019",
           "#F51212"
           ],
@@ -333,5 +330,3 @@ var myChart = new Chart(ctx, {
     
     });
 </script>
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

@@ -54,10 +54,10 @@
     <div class="row">
         <div class="col-sm-2 col-md-2 sidebar">
             <ul  class="nav nav-sidebar">
-               <li id = "home"><a href="/">Beta Programs</a></li>
+                <li id = "home"><a href="/">Home</a></li>
+                <li id = "program"><a href="/Program">Beta Programs</a></li>
                 <li id = "servername"><a href="/Overview">Server Graph</a></li>
                 <li id = "WorldMap"><a href="/worldmap">World Map</a></li>
-                <li id = "extrapage"><a href="/extrapage">All Product Status</a></li>
             </ul>
         </div>
     </div>
@@ -70,7 +70,7 @@
                     // up above. if you do not then javascript will throw an error
                     if(<%=current%>.innerHTML.includes("Beta Programs"))
                         {
-                            document.getElementById("home").classList.add("active");
+                            document.getElementById("program").classList.add("active");
                         }
                     else if (<%=current%>.innerHTML.includes("Server Graph"))
                         {
@@ -80,19 +80,9 @@
                         {
                             document.getElementById("WorldMap").classList.add("active");
                         }
-
-                    else if (<%=current%>.innerHTML.includes("extrapage"))
+                    else if (<%=current%>.innerHTML.includes("Home"))
                         {
-                            document.getElementById("extrapage").classList.add("active");
-                        }
-                    else if (<%=current%>.innerHTML.includes("Account"))
-                        {
-                            document.getElementById("accountlist").classList.add("active");
-
-                        }
-                    else if (<%=current%>.innerHTML.includes("Region"))
-                        {
-                            document.getElementById("Regions").classList.add("active");
+                            document.getElementById("home").classList.add("active");
 
                         }
                 });

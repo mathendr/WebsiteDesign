@@ -1,16 +1,3 @@
-/*
-Equivalent of prime dashboard, link to graphical rep.
-
-Adding sort by platform, region, country, city in that order. (NA by state)
-
-Try to export table to excel
-
-Security login bc people are idiots (more trouble than worth)
-
-host on local ip address
-
-*/
-
 var express = require('express');
 var reload = require('reload');
 var app = express();
@@ -22,7 +9,6 @@ app.set('view engine', 'ejs');
 app.set('views','app/views');
 
 app.locals.siteTitle = 'Prime';
-
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/ProgramView'));
@@ -36,5 +22,23 @@ app.use(require('./routes/Region'));
 var server = app.listen(app.get('port'), function () {
     console.log("Listening on port " + app.get('port'));
 });
-
 reload(server,app);
+
+app.use(function (err, req, res, next) {
+  res.status(500).send('Something broke!');
+    console.log(err);
+});
+
+app.use(function (req, res, next) {
+    res.status(404);
+    if(req.accepts('html')){
+        res.render("404Error",{
+            pageTitle: "404 Error",
+            pageID: "Page Not Found",
+            Location: "../",
+            current: "None"
+        });
+        return;
+    }
+    res.type("txt").send("Not Found");
+});

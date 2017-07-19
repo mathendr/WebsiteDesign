@@ -3,25 +3,22 @@ var router = express.Router();
 var PythonShell = require('python-shell');
 var dataFile;
 
-
 router.get('/', function (req, res) {
-    var pyshell = new PythonShell('app/data/GetServers.py');
-    pyshell.on('message',function(message){
+    var pyshell = new PythonShell('app/data/homeInfo.py');
+    pyshell.on('message', function (message) {
         dataFile = JSON.parse(message);
-        continued(res);
+        continued(req,res);
     });
-    function continued(res){
-        var ProjName = [];
-        for(i = 0; i < dataFile.length; i++)
-             ProjName = ProjName.concat(dataFile[i].replace("/","_"));
-        res.render('index', {
-            pageTitle: 'Home',
-            pageID: "home",
-            ProjName: ProjName.sort(),
-            Location: "",
-            current: "home"
-        });
-    };
+
+    function continued(req, res) {
+        res.render('Index', {
+            pageTitle: "Home",
+            pageID: "Home Page",
+            Location: "../",
+            current: "home",
+            Data: dataFile
+        })
+    }
 });
 
 module.exports = router;

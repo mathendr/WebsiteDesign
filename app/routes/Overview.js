@@ -15,11 +15,14 @@ router.get('/Overview', function (req, res) {
         var ProjName = [];
         var AccName = [];
         var Region = [];
+        var noRepeat = [];
         for(i = 0; i < dataFile.length; i++){
             ID = ID.concat(dataFile[i].ID);
             ProjName = ProjName.concat(dataFile[i].ProgramName);
             AccName = AccName.concat(dataFile[i].AccountName);
             Region = Region.concat(dataFile[i].Region);
+            if(!noRepeat.includes(dataFile[i].ProgramName))
+                noRepeat = noRepeat.concat(dataFile[i].ProgramName);
         }
         res.render('Overview', {
             pageTitle: 'Home',
@@ -29,7 +32,8 @@ router.get('/Overview', function (req, res) {
             AccountName: AccName,
             Location: "",
             current: "servername",
-            Region: Region
+            Region: Region,
+            ProgramName: noRepeat
         });
     };
 });

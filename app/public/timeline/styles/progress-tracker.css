@@ -96,19 +96,15 @@
 }
 
 .progress-step.is-active .progress-marker {
-  background-color: #2196F3;
+  background-color: #00b388;
 }
 
 .progress-step.is-complete .progress-marker {
-  background-color: #1976D2;
+  background-color: #00b388;
 }
 
 .progress-step.is-complete::after {
   background-color: #868686;
-}
-
-.progress-step:hover .progress-marker {
-  background-color: #56ADF5;
 }
 
 .progress-tracker--center .progress-step {

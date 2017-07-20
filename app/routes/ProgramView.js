@@ -16,7 +16,7 @@ router.get('/Program',function(req,res){
             pageTitle: 'Home',
             pageID: "home",
             ProjName: ProjName.sort(),
-            Location: "",
+            Location: "../",
             current: "program"
         });
     };

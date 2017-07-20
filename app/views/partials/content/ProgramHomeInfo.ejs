@@ -57,6 +57,18 @@
             </tbody>
         </table>
     </div>
+    <script>
+        $(document).ready(function() {
 
+            $('#InfoTable tr').click(function() {
+                var href = $(this).find("a").attr("href");
+                if (href) {
+                    window.location = href;
+                }
+            });
+
+        });
+
+    </script>
 
 </div>

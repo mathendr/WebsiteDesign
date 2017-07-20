@@ -310,13 +310,13 @@ var myChart = new Chart(ctx, {
         
         datasets: [{
           backgroundColor: [
-          "#6CFF00",
-          "#F2D419",
-          "#C9FF00",
-          "#F26419",
-          "#19F257",
-          "#F2A019",
-          "#F51212"
+          "#FF0000",
+          "#000BFE",
+          "#FEFE00",
+          "#7F7F77",
+          "#FFAA00",
+          "#30D400",
+          "#01FFFB"
           ],
           data: arrayd
         }]
@@ -329,4 +329,16 @@ var myChart = new Chart(ctx, {
     }
     
     });
+</script>
+<script>
+    $(document).ready(function() {
+
+            $('#InfoTable tr').click(function() {
+                var href = $(this).find("a").attr("href");
+                if (href) {
+                    window.location = href;
+                }
+            });
+
+        });
 </script>

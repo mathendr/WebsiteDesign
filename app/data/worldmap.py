@@ -12,8 +12,7 @@ conn = pypyodbc.connect(
 r"Driver={Microsoft Access Driver (*.mdb, *.accdb)};" +
 r"Dbq="+location+"\Prime_BE.accdb")
 cur = conn.cursor()
-cur.execute("SELECT * FROM ReservationsTable");
-rows = cur.fetchall()
+
 cur.execute("SELECT ProductName, Status FROM ProgramTable");
 Active = cur.fetchall()
 ActiveList = []
@@ -21,7 +20,9 @@ for row in Active:
     if(row[1] == "Active"):
         ActiveList.append(row[0])
 rowarray_list = []
-for row in rows:
+cur.execute("SELECT * FROM ReservationsTable");
+rows = cur.fetchone()
+while row is not None:
     if(row[1] in ActiveList):
         t = OrderedDict()
         t['ID'] = row[0]
@@ -29,6 +30,10 @@ for row in rows:
         t['AccountName'] = row[2]
         t['Region'] = row[3]
         rowarray_list.append(t)
+    try:
+        row = cur.fetchone()
+    except:
+        continue;
 io = StringIO()
 json.dump(rowarray_list,io)
 print(io.getvalue())

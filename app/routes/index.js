@@ -21,4 +21,23 @@ router.get('/', function (req, res) {
     }
 });
 
+router.get('/Contact/:Contact', function (req, res) {
+    var pyshell = new PythonShell('app/data/getContact.py');
+    pyshell.send("'"+req.params.Contact+"'");
+    pyshell.on('message', function (message) {
+        dataFile = JSON.parse(message);
+        continued(req,res);
+    });
+
+    function continued(req, res) {
+        res.render('Contact', {
+            pageTitle: "Contact",
+            pageID: "Contact",
+            Location: "../",
+            current: "home",
+            Data: dataFile,
+            Contact: req.params.Contact
+        })
+    }
+});
 module.exports = router;

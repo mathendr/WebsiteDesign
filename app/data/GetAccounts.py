@@ -14,9 +14,9 @@ r"Dbq="+location+"\Prime_BE.accdb")
 cur = conn.cursor()
 name = input()
 cur.execute("SELECT *FROM ReservationsTable WHERE ProgramName = '"+name+"'");
-rows = cur.fetchall()
+row = cur.fetchone()
 rowarray_list = []
-for row in rows:
+while row is not None:
     t = OrderedDict()
     t["AccountName"] = row[2]
     t['Region'] = row[3]
@@ -38,6 +38,10 @@ for row in rows:
     if(t['Operational'] == "X"):
         phase = ": Operational"
     t['ShippingPhase'] = phase
+    try:
+        row = cur.fetchone()
+    except:
+        continue;
     
     rowarray_list.append(t)
 io = StringIO()

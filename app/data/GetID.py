@@ -14,9 +14,9 @@ r"Dbq="+location+"\Prime_BE.accdb")
 cur = conn.cursor()
 ID = input()
 cur.execute("SELECT * FROM ReservationsTable WHERE ReservationID = "+ID);
-rows = cur.fetchall()
+row = cur.fetchone()
 rowarray_list = []
-for row in rows:
+while row is not None:
     t = OrderedDict()
     t['ID'] = row[0]
     t['ProgramName'] = row[1].strip()
@@ -43,6 +43,10 @@ for row in rows:
     t['InstallationInProgress'] = row[77]
     t['Operational'] = row[78]
     rowarray_list.append(t)
+    try:
+        row = cur.fetchone()
+    except:
+        continue;
 io = StringIO()
 json.dump(rowarray_list,io)
 print(io.getvalue())

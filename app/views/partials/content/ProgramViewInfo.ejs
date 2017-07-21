@@ -53,7 +53,7 @@
     </div>
 </div>
 <div class="col-sm-4 col-md-4">
-    <div class="sidebar-nav-fixed pull-right affix">
+    <div id = "chartArea" class="sidebar-nav-fixed pull-right affix">
         <h3><b>Region Map</b></h3>
         <div id="mapdiv" style="width: 325px; height: 200px;" style="background-color:#222222;"></div>
         <h3><b>Shipping Overview</b></h3>
@@ -327,8 +327,11 @@ var myChart = new Chart(ctx, {
       position: 'bottom'
     }
     }
-    
     });
+    $("#myChart").css("width",$("#chartArea").width() + "px");
+    $("#myChart").css("height",$("#chartArea").height()/2.3 + "px");
+    $("#mapdiv").css("width",$("#chartArea").width() + "px");
+    $("#mapdiv").css("height",$("#chartArea").height()/2.3 + "px");
 </script>
 <script>
     $(document).ready(function() {

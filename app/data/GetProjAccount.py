@@ -15,9 +15,9 @@ cur = conn.cursor()
 progName = input()
 AccName = input()
 cur.execute("SELECT * FROM ReservationsTable WHERE ProgramName = '"+progName+"' AND AccountName = '"+AccName+"'");
-rows = cur.fetchall()
+row = cur.fetchone()
 rowarray_list = []
-for row in rows:
+while row is not None:
     t = OrderedDict()
     t['ID'] = row[0]
     t['ProgramName'] = row[1].strip()
@@ -44,6 +44,10 @@ for row in rows:
     t['InstallationInProgress'] = row[77]
     t['Operational'] = row[78]
     rowarray_list.append(t)
+    try:
+        row = cur.fetchone()
+    except:
+        continue;
 io = StringIO()
 json.dump(rowarray_list,io)
 print(io.getvalue())

@@ -16,11 +16,15 @@ name = input()
 t = OrderedDict()
 fullArray = []
 cur.execute("SELECT * FROM ProgramTable WHERE Status = 'Active'");
-rows = cur.fetchall()
+row = cur.fetchone()
 betaCoord = []
-for row in rows:
+while row is not None:
     if(name in row):
         betaCoord.append(row[2])
+    try:
+        row = cur.fetchone()
+    except:
+        continue;
 
 
 cur.execute("SELECT Email FROM UsersTable WHERE Name = '" + name + "'")

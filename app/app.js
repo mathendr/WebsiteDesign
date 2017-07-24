@@ -21,8 +21,8 @@ app.use(require('./routes/extrapage'));
 app.use(require('./routes/help'));
 app.use(require('./routes/Region'));
 
-//var server = app.listen(app.get('port'), function () {
-var server = app.listen(8000,'16.104.6.95', function () {
+var server = app.listen(app.get('port'), function () {
+//var server = app.listen(8000,'16.104.6.95', function () {
     console.log("Listening on port " + app.get('port'));
 });
 reload(server,app);

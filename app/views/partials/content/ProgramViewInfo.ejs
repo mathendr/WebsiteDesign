@@ -53,11 +53,15 @@
     </div>
 </div>
 <div class="col-sm-4 col-md-4">
-    <div id = "chartArea" class="sidebar-nav-fixed pull-right affix">
+    <div id="chartArea" class="sidebar-nav-fixed pull-right affix">
         <h3><b>Region Map</b></h3>
-        <div id="mapdiv" style="width: 325px; height: 200px;" style="background-color:#222222;"></div>
+        <div class = "chartwrapper">
+            <div id="mapdiv" class = "chartdiv"></div>
+        </div>
         <h3><b>Shipping Overview</b></h3>
-        <canvas id="myChart" width="325px" height="200px"></canvas>
+        <div class = "chartwrapper">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
 </div>
 
@@ -328,12 +332,9 @@ var myChart = new Chart(ctx, {
     }
     }
     });
-    $("#myChart").css("width",$("#chartArea").width() + "px");
-    $("#myChart").css("height",$("#chartArea").height()/2.3 + "px");
-    $("#mapdiv").css("width",$("#chartArea").width() + "px");
-    $("#mapdiv").css("height",$("#chartArea").height()/2.3 + "px");
+   
 </script>
-<script>
+<script>    
     $(document).ready(function() {
 
             $('#InfoTable tr').click(function() {
@@ -345,3 +346,22 @@ var myChart = new Chart(ctx, {
 
         });
 </script>
+
+<style>
+    .chartwrapper {
+        width: 100%;
+        position: relative;
+        padding-bottom: 50%;
+    }
+    
+    .chartdiv {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #chartArea{
+        padding-bottom: 50%;
+    }
+    
+</style>
